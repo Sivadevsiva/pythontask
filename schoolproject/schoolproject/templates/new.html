@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+var subjectObject = {
+  "Computer Science": {
+    "Python": [],
+    "JavaScript": []
+  },
+  "English": {
+    "Literature": []
+  },
+  "Commerce": {
+    "B.Com": [],
+    "M.Com": []
+  },
+  "Electronics": {
+    "Diploma Es": [],
+    "B.Tech Es": []
+  },
+  "Electrical": {
+    "Diploma Es": [],
+    "B.Tech Es": []
+    }
+}
+window.onload = function() {
+  var subjectSel = document.getElementById("subject");
+  var topicSel = document.getElementById("topic");
+
+  for (var x in subjectObject) {
+    subjectSel.options[subjectSel.options.length] = new Option(x, x);
+  }
+  subjectSel.onchange = function() {
+    //empty Chapters- and Topics- dropdowns
+
+    topicSel.length = 1;
+    //display correct values
+    for (var y in subjectObject[this.value]) {
+      topicSel.options[topicSel.options.length] = new Option(y, y);
+    }
+  }
+  topicSel.onchange = function() {
+    //empty Chapters dropdown
+
+    //display correct values
+    var z = subjectObject[subjectSel.value][this.value];
+    for (var i = 0; i < z.length; i++) {
+
+    }
+  }
+}
+</script>
+</head>
+<body>
+
+
+<form name="form1" id="form1" action="{% url 'credentials:login' %}">
+Department <select name="subject" id="subject">
+    <option value="" selected="selected">Select Department</option>
+  </select>
+  <br><br>
+Course <select name="topic" id="topic">
+    <option value="" selected="selected">Select Course</option>
+  </select>
+  <br><br>
+
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
